@@ -34,7 +34,7 @@ function App() {
   }
 
   const handleSubmit = () => {
-    const price = calculateDeliveryFee(cartValue,2000,2); 
+    const price = calculateDeliveryFee(cartValue, distance, number, time); 
     setDeliveryPrice(price);
   }
 
@@ -43,7 +43,7 @@ function App() {
         <header>
           Delivery Fee Calculator
         </header>
-        <div>
+        <div style={{marginTop: 20, width: 300, display:'inline-block'}}>
           <Stack spacing={3}>
             <TextField 
               id="outlined-basic" 

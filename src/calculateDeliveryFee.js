@@ -1,14 +1,15 @@
 import getNumberFee from "./getNumberFee";
+import moment from "moment";
 
 const calculateDeliveryFee = (
     cartValue, 
     distance, 
     number, 
-    // time,
+    time,
 ) => {
     let cartFee = 0
     let deliveryFee = 0;
-    // cartValue > 10000 => deliveryFee = 0
+
     if (cartValue >= 10000)
         return 0
     
@@ -23,10 +24,14 @@ const calculateDeliveryFee = (
     
     deliveryFee = distanceFee + numberFee + cartFee
     
-    // time = Fri 15~19 => deliveryFee = deliveryFee * 1.2
+    const day = moment(time).format('dddd')
+    const hour = moment(time).format('k')
+   
+    if (day === 'Friday' && hour >= 15 && hour <= 19)
+        deliveryFee = deliveryFee * 1.2
 
     if (deliveryFee > 1500) 
-        deliveryFee = 1500
+        deliveryFee = 1500    
 
     return deliveryFee
 }

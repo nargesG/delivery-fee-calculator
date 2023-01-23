@@ -17,7 +17,7 @@ const calculateDeliveryFee = (
     
     let distanceFee = 200
     if (distance > 1000) 
-        distanceFee = Math.round(distance / 500 + 1) * 100 + 200
+        distanceFee = Math.ceil((distance - 1000) / 500) * 100 + 200
     
     const numberFee = getNumberFee(number)
     

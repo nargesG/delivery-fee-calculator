@@ -22,7 +22,7 @@ const calculateDeliveryFee = (
     deliveryFee = distanceFee + numberFee + cartFee
     
     const day = moment(time).format('dddd')
-    const hour = moment(time).format('k')
+    const hour = parseInt(moment(time).format('k'))
    
     if (day === 'Friday' && hour >= 15 && hour <= 19)
         deliveryFee = deliveryFee * 1.2

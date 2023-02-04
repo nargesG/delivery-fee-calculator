@@ -13,9 +13,9 @@ function App() {
   const [time, setTime] = useState(
     moment().format(),
   );
-  const [cartValue, setCartValue] = useState(0)
-  const [distance, setDistance] = useState(0)
-  const [number, setNumber] = useState(0)
+  const [cartValue, setCartValue] = useState('0')
+  const [distance, setDistance] = useState('0')
+  const [number, setNumber] = useState('0')
   const [deliveryPrice, setDeliveryPrice] = useState(0)
 
   const handleChangeTime = (newValue) => {
@@ -75,7 +75,7 @@ function App() {
               />
             </LocalizationProvider>
             <Button variant="contained" onClick={handleSubmit}>Calculate Delivery Price</Button>
-            <div>Delivery Fee {parseFloat(deliveryPrice / 100).toFixed(2)} €</div>
+            <div>Delivery Fee {(deliveryPrice / 100).toFixed(2)} €</div>
           </Stack>
         </div>
     </div>

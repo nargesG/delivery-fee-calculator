@@ -4,25 +4,24 @@ import getDistanceFee from "./getDistanceFee";
 import getCartFee from "./getCartFee";
 
 const calculateDeliveryFee = (
-    cartValue, 
-    distance, 
-    number, 
-    time,
-) => {
-    let deliveryFee = 0;
+    cartValue: number, 
+    distance: number, 
+    number: number, 
+    time: string,
+): number => {
+    let deliveryFee: number = 0;
     const cartValueInCents = cartValue * 100; 
 
     if (cartValueInCents >= 10000 || number === 0)
        return 0
     
-    const cartFee = getCartFee(cartValueInCents)
-    const distanceFee = getDistanceFee(distance)
-    const numberFee = getNumberFee(number)
+    const cartFee: number = getCartFee(cartValueInCents)
+    const distanceFee: number = getDistanceFee(distance)
+    const numberFee: number = getNumberFee(number)
+    const day: string = moment(time).format('dddd')
+    const hour: number = parseInt(moment(time).format('k'))
     
     deliveryFee = distanceFee + numberFee + cartFee
-    
-    const day = moment(time).format('dddd')
-    const hour = parseInt(moment(time).format('k'))
    
     if (day === 'Friday' && hour >= 15 && hour <= 19)
         deliveryFee = deliveryFee * 1.2

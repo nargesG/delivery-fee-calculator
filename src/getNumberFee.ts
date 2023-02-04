@@ -1,4 +1,4 @@
-const getNumberFee = (number) => {
+const getNumberFee = (number: number): number => {
     let numberFee = 0
     if (number <= 4) 
         numberFee = 0

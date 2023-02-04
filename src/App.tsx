@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -18,18 +18,18 @@ function App() {
   const [number, setNumber] = useState('0')
   const [deliveryPrice, setDeliveryPrice] = useState(0)
 
-  const handleChangeTime = (newValue) => {
+  const handleChangeTime = (newValue: any) => {
     setTime(moment(newValue).format());
   };
   
-  const handleChangeCartValue = (event) => {
+  const handleChangeCartValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCartValue(event.target.value)
   }
 
-  const handelChangeDistance = (event) => {
+  const handelChangeDistance = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDistance(event.target.value)
   }
-  const handelChangeNumber = (event) => {
+  const handelChangeNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNumber(event.target.value)
   }
 

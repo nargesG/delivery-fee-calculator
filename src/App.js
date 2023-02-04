@@ -34,7 +34,7 @@ function App() {
   }
 
   const handleSubmit = () => {
-    const price = calculateDeliveryFee(cartValue, distance, number, time); 
+    const price = calculateDeliveryFee(parseFloat(cartValue), parseInt(distance), parseInt(number), time); 
     setDeliveryPrice(price);
   }
 
@@ -47,14 +47,14 @@ function App() {
           <Stack spacing={3}>
             <TextField 
               id="outlined-basic" 
-              label="Cart Value" 
+              label="Cart Value (€)" 
               variant="outlined" 
               value={cartValue} 
               onChange={handleChangeCartValue}
             />
             <TextField 
               id="outlined-basic" 
-              label="Delivery Distance" 
+              label="Delivery Distance (m)" 
               variant="outlined"
               value={distance} 
               onChange={handelChangeDistance}/>
@@ -75,7 +75,7 @@ function App() {
               />
             </LocalizationProvider>
             <Button variant="contained" onClick={handleSubmit}>Calculate Delivery Price</Button>
-            <div>Delivery Fee {deliveryPrice/100} €</div>
+            <div>Delivery Fee {parseFloat(deliveryPrice / 100).toFixed(2)} €</div>
           </Stack>
         </div>
     </div>

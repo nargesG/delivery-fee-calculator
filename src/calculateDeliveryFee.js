@@ -1,6 +1,7 @@
 import getNumberFee from "./getNumberFee";
 import moment from "moment";
 import getDistanceFee from "./getDistanceFee";
+import getCartFee from "./getCartFee";
 
 const calculateDeliveryFee = (
     cartValue, 
@@ -8,15 +9,13 @@ const calculateDeliveryFee = (
     number, 
     time,
 ) => {
-    let cartFee = 0
     let deliveryFee = 0;
+    const cartValueInCents = cartValue * 100; 
 
-    if (cartValue >= 10000)
-        return 0
+    if (cartValueInCents >= 10000 || number === 0)
+       return 0
     
-    if (cartValue < 1000) 
-        cartFee = 1000 - cartValue
-    
+    const cartFee = getCartFee(cartValueInCents)
     const distanceFee = getDistanceFee(distance)
     const numberFee = getNumberFee(number)
     
@@ -29,9 +28,9 @@ const calculateDeliveryFee = (
         deliveryFee = deliveryFee * 1.2
 
     if (deliveryFee > 1500) 
-        deliveryFee = 1500    
+        deliveryFee = 1500  
 
-    return deliveryFee
+    return Math.round(deliveryFee)
 }
 
 export default calculateDeliveryFee

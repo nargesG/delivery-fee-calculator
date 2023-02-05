@@ -9,14 +9,19 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import calculateDeliveryFee from './calculateDeliveryFee';
 import './App.css';
 
+const errorMsgIncorrectField = 'At least one field is empty';
+const errorMsgZeroItem = 'The cart should have at least one item';
+
 function App() {
   const [time, setTime] = useState(
     moment().format(),
   );
-  const [cartValue, setCartValue] = useState('0')
-  const [distance, setDistance] = useState('0')
-  const [number, setNumber] = useState('0')
+  const [cartValue, setCartValue] = useState('')
+  const [distance, setDistance] = useState('')
+  const [number, setNumber] = useState('')
   const [deliveryPrice, setDeliveryPrice] = useState(0)
+
+  const [error, setError] = useState('')
 
   const handleChangeTime = (newValue: any) => {
     setTime(moment(newValue).format());
@@ -29,12 +34,17 @@ function App() {
   const handelChangeDistance = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDistance(event.target.value)
   }
-  
+
   const handelChangeNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNumber(event.target.value)
   }
 
   const handleSubmit = () => {
+    if (number === '' || distance === '' || cartValue === '' || time === 'Invalid date') {
+      setError(errorMsgIncorrectField);
+      return;
+    }
+    setError('')
     const price = calculateDeliveryFee(parseFloat(cartValue), parseInt(distance), parseInt(number), time); 
     setDeliveryPrice(price);
   }
@@ -65,8 +75,8 @@ function App() {
               label="Number of Items" 
               variant="outlined"
               value={number}
-              helperText={!parseInt(number) && "Customer has to have at least one item in cart"}
-              error={!parseInt(number)}
+              helperText={number === '0' && errorMsgZeroItem}
+              error={number === '0'}
               onChange={handelChangeNumber}
             />
 
@@ -81,11 +91,14 @@ function App() {
             <Button 
               variant="contained" 
               onClick={handleSubmit}
-              disabled={!parseInt(number)}
             >
               Calculate Delivery Price
             </Button>
-            <div>Delivery Fee {(deliveryPrice / 100).toFixed(2)} €</div>
+            {
+              error === ''
+                ? <div>Delivery Fee {(deliveryPrice / 100).toFixed(2)} €</div>
+                : <div>{error}</div>
+            }
           </Stack>
         </div>
     </div>

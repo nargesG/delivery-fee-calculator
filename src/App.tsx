@@ -29,6 +29,7 @@ function App() {
   const handelChangeDistance = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDistance(event.target.value)
   }
+  
   const handelChangeNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNumber(event.target.value)
   }
@@ -43,7 +44,7 @@ function App() {
         <header>
           Delivery Fee Calculator
         </header>
-        <div style={{marginTop: 20, width: 300, display:'inline-block'}}>
+        <div className="Form">
           <Stack spacing={3}>
             <TextField 
               id="outlined-basic" 
@@ -57,14 +58,17 @@ function App() {
               label="Delivery Distance (m)" 
               variant="outlined"
               value={distance} 
-              onChange={handelChangeDistance}/>
-
+              onChange={handelChangeDistance}
+            />
             <TextField
               id="outlined-basic" 
               label="Number of Items" 
               variant="outlined"
               value={number}
-              onChange={handelChangeNumber}/>
+              helperText={!parseInt(number) && "Customer has to have at least one item in cart"}
+              error={!parseInt(number)}
+              onChange={handelChangeNumber}
+            />
 
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DateTimePicker
@@ -74,7 +78,13 @@ function App() {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-            <Button variant="contained" onClick={handleSubmit}>Calculate Delivery Price</Button>
+            <Button 
+              variant="contained" 
+              onClick={handleSubmit}
+              disabled={!parseInt(number)}
+            >
+              Calculate Delivery Price
+            </Button>
             <div>Delivery Fee {(deliveryPrice / 100).toFixed(2)} €</div>
           </Stack>
         </div>

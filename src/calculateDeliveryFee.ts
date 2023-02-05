@@ -12,6 +12,7 @@ const calculateDeliveryFee = (
     let deliveryFee: number = 0;
     const cartValueInCents = cartValue * 100; 
 
+    // Customer has to have at least one item in cart
     if (cartValueInCents >= 10000 || number === 0)
        return 0
     

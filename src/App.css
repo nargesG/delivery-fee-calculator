@@ -1,3 +1,16 @@
 .App {
   text-align: center;
 }
+
+.App header {
+  font-size: 24px;
+  margin: 24px;
+}
+
+.Form {
+  width: 300px;
+  display: inline-block;
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  padding: 40px;
+}

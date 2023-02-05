@@ -5,4 +5,9 @@ describe('Cart Fee', () => {
     {
         expect(getCartFee(1000)).toBe(0);
     })
+
+    test('if cart value is less then 10€ cart fee is 10 - cart value', () => 
+    {   
+        expect(getCartFee(900)).toBe(100);
+    })
 })

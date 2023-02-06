@@ -13,6 +13,8 @@ The entire details for running and testing is the same as mentioned in it's page
 - There is a main calculator function `calcultorDeliveryFee.ts` which uses some of sub-calculator functions to process the whole 
 conditions and corners of a delivery fee. For example, calculating the distance fee would be done in `getCartFee.ts`
 
+- All of the calculator functions are located in `utils` folder.
+
 - The cart value could be zero in UI (as it could be possible to have free items in cart or a voucher used)
 
 - The number of items could not reasonably be zero because if there is no item inside of the cart, there

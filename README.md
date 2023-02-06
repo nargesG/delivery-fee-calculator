@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Wolt Delivery Fee Calculator
+
+The project includes a UI to calculate Delivery Fee based on the logic mentioned 
+in the [assignment page](https://github.com/woltapp/engineering-summer-intern-2023#specification)
+
+## Boilerplate
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The entire details for running and testing is the same as mentioned in it's page.
 
-## Available Scripts
+## Technical Details
 
-In the project directory, you can run:
+- There is a main calculator function `calcultorDeliveryFee.ts` which uses some of sub-calculator functions to process the whole 
+conditions and corners of a delivery fee. For example, calculating the distance fee would be done in `getCartFee.ts`
 
-### `npm start`
+- The cart value could be zero in UI (as it could be possible to have free items in cart or a voucher used)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- The number of items could not reasonably be zero because if there is no item inside of the cart, there
+is no need to be delivered, but in UI and the conditional logic, there is a checking to make sure,
+no problem will come up in case the user enters zero for the mentioned property. Also, an error would be
+displayed under the number of items TextField.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Filling up the whole fields are mandatory in UI, so in case the user do not enter any of them,
+a proper message would be shown under the form.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

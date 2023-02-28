@@ -21,6 +21,10 @@ describe('Fee Calculator', () => {
     })
     test('if cart is empty delivery fee is not taken', () => {
       expect(calculateDeliveryFee(10, 0, 0, normalTime)).toBe(0);
-    })
+    });
+    test('if cart is negative, delivery fee is okey', () => {
+      expect(calculateDeliveryFee(-1, 0, 1, normalTime)).toBe(1300);
+    });
+
     
 })
